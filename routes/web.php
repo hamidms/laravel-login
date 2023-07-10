@@ -24,6 +24,8 @@ Route::get('/', function () {
 Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('login', [LoginController::class, 'login']);
 
+Route::get('/reload-captcha', [LoginController::class, 'reloadCaptcha']);
+
 Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::get('change-password', [ChangePasswordController::class, 'showChangePasswordForm'])->name('change-password');

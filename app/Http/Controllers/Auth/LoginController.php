@@ -111,4 +111,8 @@ class LoginController extends Controller
         $request->session()->regenerateToken();
         return redirect('/login');
     }
+
+    public function reloadCaptcha() {
+        return response()->json(['captcha'=>captcha_img()]);
+    }
 }
