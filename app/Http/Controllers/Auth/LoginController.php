@@ -93,6 +93,11 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
+
+        $request->validate([
+            'captcha' => 'required|captcha'
+        ]);
+        
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
@@ -113,6 +118,6 @@ class LoginController extends Controller
     }
 
     public function reloadCaptcha() {
-        return response()->json(['captcha'=>captcha_img()]);
+        return response()->json(['captcha'=>captcha_img('math')]);
     }
 }
