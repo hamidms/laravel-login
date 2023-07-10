@@ -105,13 +105,28 @@ class RegisterController extends Controller
     }
 
     protected function validator(array $data)
-    {
-        return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'confirmed', 'min:10', 'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]+$/'],
-        ]);
-    }
+{
+    $validator = Validator::make($data, [
+        'name' => ['required', 'string', 'max:255'],
+        'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+        'password' => [
+            'required',
+            'string',
+            'confirmed',
+            'min:10',
+            'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]+$/',
+        ],
+    ]);
+
+    $validator->setAttributeNames([
+        'password' => 'password',
+    ]);
+
+    $validator->messages()->add('password.regex', 'The :attribute must contain at least one lowercase letter, one uppercase letter, one digit, and one special character.');
+
+    return $validator;
+}
+
 
     protected function create(array $data)
     {
