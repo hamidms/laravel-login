@@ -12,6 +12,14 @@
 <form method="POST" action="{{ route('login') }}">
     @csrf
 
+    <div class="alert">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+
     <div>
         <label for="email">Email</label>
         <input id="email" type="email" name="email" required autofocus>
