@@ -3,6 +3,6 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Dashboard</h1>
-    <p>Welcome, {{ Auth::user()->name }}!</p>
+    <p>Good Day!</p>
+    <h1>Welcome, {{ Auth::user()->name }}!</h1>
 @endsection

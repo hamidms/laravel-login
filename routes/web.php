@@ -18,10 +18,10 @@ use App\Http\Controllers\Auth\ChangePasswordController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
-Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
+Route::get('login', [LoginController::class, 'index'])->name('login');
 Route::post('login', [LoginController::class, 'login'])->middleware('throttle:login');
 
 Route::get('/reload-captcha', [LoginController::class, 'reloadCaptcha']);
